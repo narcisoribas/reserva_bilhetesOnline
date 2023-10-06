@@ -37,6 +37,7 @@ import {
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
+import { Link } from "react-router-dom";
 
 const RotasDeServico = () => {
   return (
@@ -49,7 +50,7 @@ const RotasDeServico = () => {
           <div className="col-md-12">
             <Card className="shadow">
               <CardHeader className="border-0 d-flex space-between">
-                <h3 className="mb-0 btn btn-primary">+ Nova rota</h3>
+                <Link to="/admin/addRotas" className="mb-0 btn btn-primary">+ Nova rota</Link>
               </CardHeader>
               <Table className="align-items-center table-flush col-12 px-3" responsive>
                 <thead className="thead-light">

@@ -1,4 +1,4 @@
-
+import Home from "views/cliente/Home";
 import Index from "views/Index.js";
 import Profile from "views/examples/Profile.js";
 import Maps from "views/examples/Maps.js";
@@ -6,8 +6,21 @@ import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import PontoDeEmbargue from "views/pontodeEmbargue/PontoDeEmbarque";
 import RotasDeServico from "views/rotas/RotasDeServico";
+import Classes from "views/classes/Classe";
+import Usuario from "views/usuarios/Usuario";
+import AddUsuario from "views/usuarios/UsuarioCreate";
+import AddRota from "views/rotas/Rotacreate";
+import ClasseCreate from "views/classes/ClasseCreate";
+import Pagamentos from "views/Pagamento/Pagamento";
+
 
 var routes = [
+  {
+    path: "/home",
+    component: <Home/>,
+    
+    
+  },
   {
     path: "/index",
     name: "Dashboard",
@@ -15,6 +28,7 @@ var routes = [
     component: <Index />,
     layout: "/admin",
   },
+
   {
     path: "/pontosDeEmbargue",
     name: "Pontos de embargue",
@@ -29,24 +43,40 @@ var routes = [
     component: <RotasDeServico />,
     layout: "/admin",
   },
-
+  ,
+  {
+    path: "/addRotas",
+    name: "Rotas",
+    icon: "ni ni-pin-3 text-orange",
+    component: <AddRota/>,
+    name:"hidden",
+    layout: "/admin",
+  },
   {
     path:"/users",
     name:"Usuarios",
     icon: "ni ni-single-02 text-yellow",
-    component:<h1>Usuarios</h1>,
+    component:<Usuario/>,
+    layout:"/admin"
+  },
+  {
+    path:"/userCreate",
+    icon: "ni ni-single-02 text-yellow",
+    component:<AddUsuario/>,
+    name:"hidden",
     layout:"/admin"
   },
   {
     path: "/user-profile",
     component: <Profile />,
+    name:"hidden",
     layout: "/admin",
   },
   {
     path: "/tables",
-    name: "Carros",
+    name: "Pagamentos",
     icon: "ni ni-bullet-list-67 text-red",
-    component: <h1>Carros</h1>,
+    component: <Pagamentos />,
     layout: "/admin",
   },
   ,
@@ -54,18 +84,17 @@ var routes = [
     path: "/classes",
     name: "Classes",
     icon: "ni ni-bullet-list-67 text-red",
-    component: <h1>Classes</h1>,
+    component: <Classes/>,
     layout: "/admin",
   },
-
+  ,
   {
-    path: "/pagamentos",
-    name: "Pagamentos",
+    path: "/addclasses",
+    name: "hidden",
     icon: "ni ni-bullet-list-67 text-red",
-    component: <h1>Pagamentos</h1>,
+    component: <ClasseCreate/>,
     layout: "/admin",
-  },
-  
+  },  
   {
     path: "/recibos",
     name: "Recibos",
@@ -83,14 +112,14 @@ var routes = [
   },  
   {
     path: "/login",
-    name: "Login",
+    name:"hidden",
     icon: "ni ni-key-25 text-info",
     component: <Login />,
     layout: "/auth",
   },
   {
     path: "/register",
-    name: "Register",
+    name:"hidden",
     icon: "ni ni-circle-08 text-pink",
     component: <Register />,
     layout: "/auth",
