@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import logo from "./img/logo.png"
 
 function NavBar() {
   return (
@@ -41,8 +42,9 @@ function NavBar() {
   <div className="container-fluid position-relative nav-bar p-0 fixed-top mt-lg-5" >
     <div className="container-lg position-relative p-0 px-lg-3 " style={{zIndex: 9}}>
       <nav className="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-        <a href className="navbar-brand">
-          <h1 className="m-0 text-primary"><span className="text-dark">H</span>EXPRESSO</h1>
+        <a href className="navbar-brand d-flex">
+          <img src={logo} style={{height:60}}/>
+          <h1 className="m-0 mt-2 mx-3" style={{color:"#3E2E61"}}><span className='text-dark'>H</span>EXPRESSO</h1>
         </a>
         <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
           <span className="navbar-toggler-icon" />
