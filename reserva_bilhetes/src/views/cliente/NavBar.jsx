@@ -17,21 +17,17 @@ function NavBar() {
         </div>
         <div className="col-lg-6 text-center text-lg-right">
           <div className="d-inline-flex align-items-center">
-            <a className="text-primary px-3" href>
+            <a className=" px-3" style={{color:"#3E2E61"}} href>
               <i className="fab fa-facebook-f" />
             </a>
-            <a className="text-primary px-3" href>
+            <a className=" px-3" href style={{color:"#3E2E61"}}>
               <i className="fab fa-twitter" />
             </a>
-            <a className="text-primary px-3" href>
+            <a className=" px-3" style={{color:"#3E2E61"}} href>
               <i className="fab fa-linkedin-in" />
             </a>
-            <a className="text-primary px-3" href>
-              <i className="fab fa-instagram" />
-            </a>
-            <a className="text-primary pl-3" href>
-              <i className="fab fa-youtube" />
-            </a>
+          
+          
           </div>
         </div>
       </div>
