@@ -29,6 +29,7 @@ import AuthLayout from "layouts/Auth.js";
 import Home from "views/cliente/Home";
 import Reserva from "views/cliente/reserva/Reserva";
 import ResumoDaViagem from "views/cliente/resumoViagem/ResumoDaViagem";
+import QRCode from "views/cliente/perfil/QRCode";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -38,7 +39,7 @@ root.render(
       <Route path="/" element={<Home/>} />
       <Route path="/reserva" element={<Reserva/>} />
       <Route path="/resumoViagem" element={<ResumoDaViagem/>}/>
-      
+      <Route path="/recibo" element={<QRCode/>}/>
 
       <Route path="/admin/*" element={<AdminLayout />} />
       <Route path="/auth/*" element={<AuthLayout />} />

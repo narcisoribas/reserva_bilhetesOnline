@@ -1,6 +1,7 @@
 
 
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button, Card, CardBody, CardHeader, Form, Row } from 'reactstrap'
 
 import mcEXP from "./mcexpress.png"
@@ -8,6 +9,8 @@ import unitel from "./unitelmane.jpg"
 import pagamentoPorReferencia from "./pagamentoReferecia.jpg"
 
 function MetodoPagamento() {
+
+  const navigate = useNavigate()
   return (
     <div className='container'>
         <Card>
@@ -39,7 +42,7 @@ function MetodoPagamento() {
                         <input className='form-control mt-3  px-3 py-4' name="sobreNomePassageiro" placeholder='Telefone...'/>
                       </label>
 
-                      <button className='btn btn-primary col-md-4  ml-3' type='button' role='button'>Pagar</button>
+                      <button onClick={()=>navigate("/recibo")} className='btn btn-primary col-md-4  ml-3' type='button' role='button'>Pagar</button>
                   </Row>
             </Form>
           </CardBody>

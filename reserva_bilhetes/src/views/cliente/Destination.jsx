@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 import destination1 from "./img/destination-1.jpg";
 import destination2 from "./img/destination-2.jpg";
@@ -8,6 +9,7 @@ import destination5 from "./img/destination-5.jpg";
 import destination6 from "./img/destination-6.jpg";
 
 function Destination() {
+  const navigate = useNavigate();
   return (
     <div id="destino" className="container-fluid py-5">
     <div className="container pt-5 pb-3">
@@ -16,7 +18,7 @@ function Destination() {
         <h1>Destinos mais frequentes</h1>
       </div>
       <div className="row">
-        <div className="col-lg-4 col-md-6 mb-4">
+        <div className="col-lg-4 col-md-6 mb-4" onClick={()=>navigate("/reserva")}>
           <div className="destination-item position-relative overflow-hidden mb-2">
             <img className="img-fluid" src={destination1} alt />
             <a className="destination-overlay text-white text-decoration-none" href>
@@ -25,7 +27,7 @@ function Destination() {
             </a>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6 mb-4">
+        <div className="col-lg-4 col-md-6 mb-4" onClick={()=>navigate("/reserva")}>
           <div className="destination-item position-relative overflow-hidden mb-2">
             <img className="img-fluid" src={destination2} alt />
             <a className="destination-overlay text-white text-decoration-none" href>
@@ -34,7 +36,7 @@ function Destination() {
             </a>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6 mb-4">
+        <div className="col-lg-4 col-md-6 mb-4" onClick={()=>navigate("/reserva")}>
           <div className="destination-item position-relative overflow-hidden mb-2">
             <img className="img-fluid" src={destination3} alt />
             <a className="destination-overlay text-white text-decoration-none" href>
@@ -43,7 +45,7 @@ function Destination() {
             </a>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6 mb-4">
+        <div className="col-lg-4 col-md-6 mb-4" onClick={()=>navigate("/reserva")}>
           <div className="destination-item position-relative overflow-hidden mb-2">
             <img className="img-fluid" src={destination4} alt />
             <a className="destination-overlay text-white text-decoration-none" href>
@@ -52,7 +54,7 @@ function Destination() {
             </a>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6 mb-4">
+        <div className="col-lg-4 col-md-6 mb-4" onClick={()=>navigate("/reserva")}>
           <div className="destination-item position-relative overflow-hidden mb-2">
             <img className="img-fluid" src={destination5} alt />
             <a className="destination-overlay text-white text-decoration-none" href>
@@ -61,7 +63,7 @@ function Destination() {
             </a>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6 mb-4">
+        <div className="col-lg-4 col-md-6 mb-4" onClick={()=>navigate("/reserva")}>
           <div className="destination-item position-relative overflow-hidden mb-2">
             <img className="img-fluid" src={destination6} alt />
             <a className="destination-overlay text-white text-decoration-none" href>
