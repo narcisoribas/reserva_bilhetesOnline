@@ -27,15 +27,18 @@ import AdminLayout from "layouts/Admin.js";
 import AuthLayout from "layouts/Auth.js";
 
 import Home from "views/cliente/Home";
+import Reserva from "views/cliente/reserva/Reserva";
+import ResumoDaViagem from "views/cliente/resumoViagem/ResumoDaViagem";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={
-        <Home/>
-      } />
+      <Route path="/" element={<Home/>} />
+      <Route path="/reserva" element={<Reserva/>} />
+      <Route path="/resumoViagem" element={<ResumoDaViagem/>}/>
+      
 
       <Route path="/admin/*" element={<AdminLayout />} />
       <Route path="/auth/*" element={<AuthLayout />} />

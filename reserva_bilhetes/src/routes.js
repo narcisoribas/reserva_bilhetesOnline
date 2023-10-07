@@ -17,10 +17,10 @@ import Pagamentos from "views/Pagamento/Pagamento";
 var routes = [
   {
     path: "/home",
-    component: <Home/>,
-    
+    component: <Home/>,   
     
   },
+  
   {
     path: "/index",
     name: "Dashboard",
