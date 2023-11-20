@@ -1,3 +1,5 @@
+import { AuthContext } from "functions/context";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -16,6 +18,17 @@ import {
 
 const Login = () => {
   const navigate = useNavigate()
+
+  const {login}=useContext(AuthContext)
+  const [email,setEmail]=useState()
+  const [password,setPassword]=useState()
+
+
+  const handleSubmit = ()=>{
+   // alert("ola")
+    login(email,password);
+  }
+
   return (
     <>
       <Col lg="5" md="7">
@@ -58,6 +71,8 @@ const Login = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
+                    value={email}
+                    onChange={e=>setEmail(e.target.value)}
                     placeholder="Email"
                     type="email"
                     autoComplete="new-email"
@@ -72,6 +87,8 @@ const Login = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
+                     value={password}
+                     onChange={e=>setPassword(e.target.value)}
                     placeholder="Password"
                     type="palavra passe"
                     autoComplete="new-password"
@@ -92,7 +109,7 @@ const Login = () => {
                 </label>
               </div>
               <div className="text-center">
-                <Button className="my-4" color="primary" type="button" onClick={()=>navigate("/admin/index")}>
+                <Button className="my-4" color="primary" type="button" onClick={handleSubmit}>
                   Entrar
                 </Button>
               </div>

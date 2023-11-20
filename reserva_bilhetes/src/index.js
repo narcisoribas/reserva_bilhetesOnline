@@ -30,11 +30,15 @@ import Home from "views/cliente/Home";
 import Reserva from "views/cliente/reserva/Reserva";
 import ResumoDaViagem from "views/cliente/resumoViagem/ResumoDaViagem";
 import QRCode from "views/cliente/perfil/QRCode";
+import { AuthContextProvider } from "functions/context";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
+  <AuthContextProvider>
   <BrowserRouter>
+
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/reserva" element={<Reserva/>} />
@@ -47,4 +51,5 @@ root.render(
       
     </Routes>
   </BrowserRouter>
+  </AuthContextProvider>
 );
