@@ -36,8 +36,9 @@ import { AuthContextProvider } from "functions/context";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <AuthContextProvider>
   <BrowserRouter>
+  <AuthContextProvider>
+  
 
     <Routes>
       <Route path="/" element={<Home/>} />
@@ -50,6 +51,7 @@ root.render(
       <Route path="*" element={<Home/>} />
       
     </Routes>
-  </BrowserRouter>
+  
   </AuthContextProvider>
+  </BrowserRouter>
 );

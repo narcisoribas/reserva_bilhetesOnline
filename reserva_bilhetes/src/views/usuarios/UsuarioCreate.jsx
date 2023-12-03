@@ -1,20 +1,4 @@
-/*!
 
-=========================================================
-* Argon Dashboard React - v1.2.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 // reactstrap components
 import {
   Badge,
@@ -48,9 +32,26 @@ import {
   InputGroup,  
   Col
 } from "reactstrap";
+import { useContext, useState } from "react";
+import { AuthContext } from "functions/context";
 
 
 const AddUsuario = () => {
+
+    const {userCreate}=useContext(AuthContext);
+    const [email,setEmail]=useState()
+    const[name,setName]=useState()
+    const [password,setPassword]=useState()
+
+
+    async function handleCreateUser(){
+      if(email !==null && name !== null && password !== null){
+        userCreate(name,email,password)
+      }else{
+        alert("Preencha todos os campos!")
+      }
+    }
+
   return (
     <>
       <Header />
@@ -69,7 +70,7 @@ const AddUsuario = () => {
                       <i className="ni ni-hat-3" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input placeholder="Nome" type="text" className="px-3" />
+                  <Input value={name} onChange={e=>setName(e.target.value)} placeholder="Nome" type="text" className="px-3" />
                 </InputGroup>
               </FormGroup>
               <FormGroup className="col-md-6">
@@ -80,6 +81,8 @@ const AddUsuario = () => {
                     </InputGroupText >
                   </InputGroupAddon>
                   <Input
+                   value={email}
+                   onChange={e=>setEmail(e.target.value)}
                     className="px-3"
                     placeholder="Email"
                     type="email"
@@ -97,6 +100,8 @@ const AddUsuario = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
+                  value={password}
+                  onChange={e=>setPassword(e.target.value)}
                     className="px-3"
                     placeholder="Palavra passe"
                     type="password"
@@ -105,21 +110,7 @@ const AddUsuario = () => {
                 </InputGroup>
               </FormGroup>
 
-              <FormGroup className="col-md-6">
-                <InputGroup className="input-group-alternative">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="ni ni-lock-circle-open" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    className="px-3"
-                    placeholder="Confirmar palavra passe"
-                    type="password"
-                    autoComplete="new-password"
-                  />
-                </InputGroup>
-              </FormGroup>
+             
               </Row>
               <div className="text-muted font-italic">
                 <small>
@@ -129,7 +120,7 @@ const AddUsuario = () => {
               </div>
              
               <div className="text-center">
-                <Button className="mt-4" color="primary" type="button">
+                <Button onClick={handleCreateUser} className="mt-4" color="primary" type="button">
                   Salvar
                 </Button>
               </div>

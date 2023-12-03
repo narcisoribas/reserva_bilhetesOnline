@@ -20,8 +20,8 @@ const Login = () => {
   const navigate = useNavigate()
 
   const {login}=useContext(AuthContext)
-  const [email,setEmail]=useState()
-  const [password,setPassword]=useState()
+  const [email,setEmail]=useState("malcolm79@example.com")
+  const [password,setPassword]=useState("password")
 
 
   const handleSubmit = ()=>{
@@ -90,7 +90,7 @@ const Login = () => {
                      value={password}
                      onChange={e=>setPassword(e.target.value)}
                     placeholder="Password"
-                    type="palavra passe"
+                    type="password"
                     autoComplete="new-password"
                   />
                 </InputGroup>
