@@ -4,13 +4,16 @@ import logo from "./img/logo_white.png"
 function NavBar() {
   return (
     <Fragment>
-      {/* Topbar Start */}
+      {/* Topbar Start 
   <div className="container-fluid bg pt-3 d-none d-lg-block fixed-top">
     <div className="container">
       <div className="row">
         <div className="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
           <div className="d-inline-flex align-items-center">
-            <p><i className="fa fa-envelope mr-2" />info@example.com</p>
+            <p> <a href className="navbar-brand d-flex">
+          <img src={logo} style={{height:20}}/>
+         
+        </a></p>
             <p className="text-body px-3">|</p>
             <p><i className="fa fa-phone-alt mr-2" />+244 999 999 999</p>
           </div>
@@ -32,15 +35,17 @@ function NavBar() {
         </div>
       </div>
     </div>
-  </div>
+  </div>*/}
   {/* Topbar End */}
   {/* Navbar Start */}
-  <div className="container-fluid position-relative nav-bar p-0 fixed-top mt-lg-5" >
-    <div className=" container-lg position-relative p-0 px-lg-3 " style={{zIndex: 9}}>
-      <nav className="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+  
+
+
+
+  <nav className="navbar navbar-expand-lg  navbar-light shadow-lg fixed-top py-3 py-lg-0 pl-3 pl-lg-5 mb-5 bg">
         <a href className="navbar-brand d-flex">
           <img src={logo} style={{height:60}}/>
-          <h1 className="m-0 mt-2 mx-3" style={{color:"#3E2E61"}}><span className='text-dark'>H</span>EXPRESSO</h1>
+        
         </a>
         <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
           <span className="navbar-toggler-icon" />
@@ -58,8 +63,6 @@ function NavBar() {
           </div>
         </div>
       </nav>
-    </div>
-  </div>
   {/* Navbar End */}
     </Fragment>
   )
