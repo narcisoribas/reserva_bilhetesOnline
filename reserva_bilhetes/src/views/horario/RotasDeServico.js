@@ -38,13 +38,8 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "functions/context";
 
 const RotasDeServico = () => {
-
-  const {rotas}=useContext(AuthContext)
-
   return (
     <>
       <Header />
@@ -70,35 +65,88 @@ const RotasDeServico = () => {
                   </tr>
                 </thead>
                 <tbody>
+                  <tr>
+                    <td>Luanda-Malange</td>    
+                    <td>5000 kzs</td>            
+                    <td>
+                      <Badge color="" className="badge-dot mr-4">
+                        <i className="bg-success" />
+                        activo
+                      </Badge>
+                    </td>
 
-                  {rotas?.map((data)=>(
+                    <td>4h45min</td>
+                    <td>Maria Teresa</td>                  
+                    <td>
+                      <div className="d-flex align-items-center">
+                        <button className="btn btn-primary">editar</button>
+                        <button className="btn btn-danger">Eliminar</button>
+                      </div>
+                    </td>
+                   
+                  </tr>
+                  <tr>
+                    <td>Luanda-Malange</td>    
+                    <td>5000 kzs</td>            
+                    <td>
+                      <Badge color="" className="badge-dot mr-4">
+                        <i className="bg-success" />
+                        activo
+                      </Badge>
+                    </td>
 
-                        <tr key={data?.id}>
-                            <td>{data.origem +" - "+data.destino}</td>    
-                            <td>{data.preco+" kzs"}</td>            
-                            <td>
-                              <Badge color="" className="badge-dot mr-4">
-                                <i className="bg-success" />
-                                {data.estado}
-                              </Badge>
-                            </td>
+                    <td>4h45min</td>
+                    <td>Maria Teresa</td>                  
+                    <td>
+                      <div className="d-flex align-items-center">
+                        <button className="btn btn-primary">editar</button>
+                        <button className="btn btn-danger">Eliminar</button>
+                      </div>
+                    </td>
+                   
+                  </tr>
 
-                            <td>{data.duracao}</td>
-                            <td>{data.n_paragem}</td>                  
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <button className="btn btn-primary">editar</button>
-                                <button className="btn btn-danger">Eliminar</button>
-                              </div>
-                            </td>
+                  <tr>
+                    <td>Luanda-Malange</td>    
+                    <td>5000 kzs</td>            
+                    <td>
+                      <Badge color="" className="badge-dot mr-4">
+                        <i className="bg-success" />
+                        activo
+                      </Badge>
+                    </td>
 
-                        </tr>
+                    <td>4h45min</td>
+                    <td>Maria Teresa</td>                  
+                    <td>
+                      <div className="d-flex align-items-center">
+                        <button className="btn btn-primary">editar</button>
+                        <button className="btn btn-danger">Eliminar</button>
+                      </div>
+                    </td>
+                   
+                  </tr>
 
+                  <tr>
+                    <td>Luanda-Malange</td>    
+                    <td>5000 kzs</td>            
+                    <td>
+                      <Badge color="" className="badge-dot mr-4">
+                        <i className="bg-success" />
+                        activo
+                      </Badge>
+                    </td>
 
-
-                  ))}
-                 
-                
+                    <td>4h45min</td>
+                    <td>Maria Teresa</td>                  
+                    <td>
+                      <div className="d-flex align-items-center">
+                        <button className="btn btn-primary">editar</button>
+                        <button className="btn btn-danger">Eliminar</button>
+                      </div>
+                    </td>
+                   
+                  </tr>
 
                  
                 </tbody>

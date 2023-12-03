@@ -12,6 +12,7 @@ import AddUsuario from "views/usuarios/UsuarioCreate";
 import AddRota from "views/rotas/Rotacreate";
 import ClasseCreate from "views/classes/ClasseCreate";
 import Pagamentos from "views/Pagamento/Pagamento";
+import PontoDeEmbarqueCreate from "views/pontodeEmbargue/PontoDeEmbarqueCreate";
 
 
 var routes = [
@@ -34,6 +35,14 @@ var routes = [
     name: "Pontos de embargue",
     icon: "ni ni-planet text-blue",
     component: <PontoDeEmbargue/>,
+    layout: "/admin",
+  },
+
+  {
+    path: "/pontosDeEmbargueCreate",
+    name: "hidden",
+    icon: "ni ni-planet text-blue",
+    component: <PontoDeEmbarqueCreate/>,
     layout: "/admin",
   },
   {

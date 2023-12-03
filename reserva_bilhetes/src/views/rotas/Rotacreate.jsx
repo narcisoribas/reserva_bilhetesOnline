@@ -1,20 +1,4 @@
-/*!
 
-=========================================================
-* Argon Dashboard React - v1.2.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 // reactstrap components
 import {
   Badge,
@@ -50,13 +34,26 @@ import {
 } from "reactstrap";
 import { useContext, useState } from "react";
 import { AuthContext } from "functions/context";
+/*
+"origem": "Huambo",
+	"destino": "Benguela",  
+	"horario_id" : 1, 
+	"preco":10200 ,
+	"extensao" :"615KM", 
+	"duracao" : "11 HORAS" , 
+	"n_paragem" : "6", 
+	"total_ocupantes" : 48,
+	"desconto" :0, 
+	"local_embarque_id" : 1,
+	"estado" : "DISPONVEL"*/
 
 
 const AddRota = () => {
 
-      const {rotas,createRotas}=useContext(AuthContext)
-      const [nomeRota,setNomeRota]=useState()
-      const[horarioPartida,setHorarioPartida]=useState()
+      const {rotas,createRotas,horario,embargue}=useContext(AuthContext)
+      const [origem,setorigem]=useState()
+      const [destino,setDestino]=useState()
+      const[horario_id,setHorario_id]=useState()
       const [horarioChegada,setHorarioChegada]=useState()
       const [preco,setPreco]=useState()
       const [extensao,setExtensao]=useState()
@@ -64,10 +61,29 @@ const AddRota = () => {
       const[n_paragem,setNumeroParagem]=useState()
       const [desconto,setDesconto]=useState()
       const [estado,setEstado]=useState()
+      const [total_ocupantes,setTotal_ocupantes]=useState()
+      const [local_embarque_id,setLocal_embarque_id]=useState()
     
 
       async function handleCreateRota(){
-        await createRotas({nomeRota,horarioChegada,horarioPartida,preco,extensao,duracao,n_paragem,desconto,estado})
+        try {
+          await createRotas({total_ocupantes,local_embarque_id,origem,destino,horario_id,preco,extensao,duracao,n_paragem,desconto,estado})
+          setLocal_embarque_id("")
+          setTotal_ocupantes("")
+          setEstado("")
+          setDesconto("")
+          setNumeroParagem("")
+          setDuracao("")
+          setExtensao("")
+          setPreco("")
+          setHorario_id("")
+          setDestino("")
+          setorigem("")
+          setDesconto("")
+       
+        } catch (error) {
+          alert("Erro inesperado, tente novamente!")
+        }
       }
 
 
@@ -82,62 +98,31 @@ const AddRota = () => {
             <Card className="shadow">
             <Form role="form" className="px-4 py-5">
               <Row>
-              <FormGroup className="col-md-6">
+              <FormGroup className="col-md-4">
                 <InputGroup className="input-group-alternative mb-3">
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
                       <i className="ni ni-hat-3" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input value={nomeRota} onChange={e=>setNomeRota(e.target.value)} placeholder="Nome da rota" type="text" className="px-3" />
-                </InputGroup>
-              </FormGroup>
-              <FormGroup className="col-md-3">
-                <InputGroup className="input-group-alternative mb-3">             
-                   
-                  <Input
-                    value={horarioPartida} onChange={e=>setHorarioPartida(e.target.value)}
-                    className="px-3"
-                    placeholder="Horario de partida"
-                    type="time"
-                    autoComplete="new-email"
-                  />
+                  <Input value={origem} onChange={e=>setorigem(e.target.value)} placeholder="Origem" type="text" className="px-3" />
                 </InputGroup>
               </FormGroup>
 
-              <FormGroup className="col-md-3">
-                <InputGroup className="input-group-alternative mb-3">             
-                   
-                  <Input
-                  
-                  value={horarioChegada} onChange={e=>setHorarioChegada(e.target.value)}
-                    className="px-3"
-                    placeholder="Horario de chegada"
-                    type="time"
-                    autoComplete="new-email"
-                  />
-                </InputGroup>
-              </FormGroup>
-              </Row>
-              <Row>
-              <FormGroup className="col-md-3">
-                <InputGroup className="input-group-alternative">
+              <FormGroup className="col-md-4">
+                <InputGroup className="input-group-alternative mb-3">
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                      <i className="ni ni-lock-circle-open" />
+                      <i className="ni ni-hat-3" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input
-                  value={duracao} onChange={e=>setDuracao(e.target.value)}
-                    className="px-3"
-                    placeholder="Duracao"
-                    type="time"
-                    
-                  />
+                  <Input value={destino} onChange={e=>setDestino(e.target.value)} placeholder="Destino" type="text" className="px-3" />
                 </InputGroup>
               </FormGroup>
 
-              <FormGroup className="col-md-3">
+
+              
+              <FormGroup className="col-md-4">
                 <InputGroup className="input-group-alternative">
                   <Input
                   value={extensao} onChange={e=>setExtensao(e.target.value)}
@@ -149,7 +134,74 @@ const AddRota = () => {
                 </InputGroup>
               </FormGroup>
 
-              <FormGroup className="col-md-3">
+
+              <FormGroup className="col-md-4">
+                <InputGroup className="input-group-alternative mb-3">             
+                   
+                  <select
+                    value={horario_id} onChange={e=>setHorario_id(e.target.value)}
+                    className="px-3 form-control"
+                    placeholder="Horario"
+                    type="time"
+                    autoComplete="new-email"
+                  >
+
+                  <option>---- horario -----</option>
+                  {horario?.map((data)=>(
+                   
+                    <option key={data.id} value={data.id}>{data.hora}</option>
+                  ))}
+
+
+                    </select>
+                </InputGroup>
+              </FormGroup>
+
+
+
+
+              <FormGroup className="col-md-4">
+                <InputGroup className="input-group-alternative">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="ni ni-lock-circle-open" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                  value={duracao} onChange={e=>setDuracao(e.target.value)}
+                    className="px-3"
+                    placeholder="Duracao"
+                    type="text"
+                    
+                  />
+                </InputGroup>
+              </FormGroup>
+
+              <FormGroup className="col-md-4">
+                <InputGroup className="input-group-alternative">
+                 
+                  <select
+                    value={local_embarque_id} onChange={e=>setLocal_embarque_id(e.target.value)}
+                    className="px-3 form-control"
+                    placeholder="Local de embargue">
+
+                      <option>---Local de embargue----</option>
+
+                      {embargue?.map((data)=>(
+                        <option value={data?.id} key={data?.id}>{data.nomeLocal}</option>
+                      ))}
+
+                    </select>
+                </InputGroup>
+              </FormGroup>
+
+          
+              </Row>
+              <Row>
+
+              
+            
+              <FormGroup className="col-md-4">
                 <InputGroup className="input-group-alternative">
                  
                   <Input
@@ -162,13 +214,59 @@ const AddRota = () => {
                 </InputGroup>
               </FormGroup>
 
-              <FormGroup className="col-md-3">
+              <FormGroup className="col-md-4">
                 <InputGroup className="input-group-alternative">
                  
                   <Input
                     value={preco} onChange={e=>setPreco(e.target.value)}
                     className="px-3"
                     placeholder="Preço"
+                  
+                   
+                  />
+                </InputGroup>
+              </FormGroup>
+
+              <FormGroup className="col-md-4">
+                <InputGroup className="input-group-alternative">
+                 
+                  <Input
+                    value={desconto} onChange={e=>setDesconto(e.target.value)}
+                    className="px-3"
+                    placeholder="Desconto"
+                  
+                   
+                  />
+                </InputGroup>
+              </FormGroup>
+
+
+            
+              </Row>
+
+              <Row>
+
+                
+              <FormGroup className="col-md-6">
+                <InputGroup className="input-group-alternative">
+                 
+                  <Input
+                    value={estado} onChange={e=>setEstado(e.target.value)}
+                    className="px-3"
+                    placeholder="Estado"
+                  
+                   
+                  />
+                </InputGroup>
+              </FormGroup>
+
+              <FormGroup className="col-md-6">
+                <InputGroup className="input-group-alternative">
+                 
+                  <Input
+                    value={total_ocupantes} onChange={e=>setTotal_ocupantes(e.target.value)}
+                    className="px-3"
+                    placeholder="Ocupantes"
                   
                    
                   />

@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
-import logo from "./img/logo.png"
+import logo from "./img/logo_white.png"
 
 function NavBar() {
   return (
     <Fragment>
       {/* Topbar Start */}
-  <div className="container-fluid bg-light pt-3 d-none d-lg-block fixed-top">
+  <div className="container-fluid bg pt-3 d-none d-lg-block fixed-top">
     <div className="container">
       <div className="row">
         <div className="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
@@ -36,7 +36,7 @@ function NavBar() {
   {/* Topbar End */}
   {/* Navbar Start */}
   <div className="container-fluid position-relative nav-bar p-0 fixed-top mt-lg-5" >
-    <div className="container-lg position-relative p-0 px-lg-3 " style={{zIndex: 9}}>
+    <div className=" container-lg position-relative p-0 px-lg-3 " style={{zIndex: 9}}>
       <nav className="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
         <a href className="navbar-brand d-flex">
           <img src={logo} style={{height:60}}/>

@@ -1,20 +1,8 @@
-/*!
 
-=========================================================
-* Argon Dashboard React - v1.2.3
-=========================================================
+import {useNavigate,Link} from "react-router-dom"
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
 
-* Coded by Creative Tim
 
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 // reactstrap components
 import {
   Badge,
@@ -37,8 +25,26 @@ import {
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
+import { useContext, useState } from "react";
+import { AuthContext } from "functions/context";
 
 const PontoDeEmbargue = () => {
+
+  const {embargue,deleteLocalDeEmbarque}=useContext(AuthContext)
+
+            
+  const navigate = useNavigate()
+
+
+  async function deleteItem(id){
+    try {
+      deleteLocalDeEmbarque(Number(id))
+    } catch (error) {
+      alert("Erro inesperado,tente de novo")
+    }
+  }
+
+
   return (
     <>
       <Header />
@@ -49,7 +55,7 @@ const PontoDeEmbargue = () => {
           <div className="col-md-12">
             <Card className="shadow">
               <CardHeader className="border-0 d-flex space-between">
-                <h3 className="mb-0 btn btn-primary">+ Novo ponto</h3>
+                <Link to="/admin/pontosDeEmbargueCreate" className="mb-0 btn btn-primary">+ Novo ponto</Link>
               </CardHeader>
               <Table className="align-items-center table-flush col-12 px-3" responsive>
                 <thead className="thead-light">
@@ -61,79 +67,31 @@ const PontoDeEmbargue = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Gamek</td>                
-                    <td>
-                      <Badge color="" className="badge-dot mr-4">
-                        <i className="bg-warning" />
-                        Pendente
-                      </Badge>
-                    </td>
-                  
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <button className="btn btn-primary">editar</button>
-                        <button className="btn btn-danger">Eliminar</button>
-                      </div>
-                    </td>
-                   
-                  </tr>
+                
 
-                  <tr>
-                    <td>Gamek</td>                
-                    <td>
-                      <Badge color="" className="badge-dot mr-4">
-                        <i className="bg-warning" />
-                        Pendente
-                      </Badge>
-                    </td>
-                  
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <button className="btn btn-primary">editar</button>
-                        <button className="btn btn-danger">Eliminar</button>
-                      </div>
-                    </td>
-                   
-                  </tr>
+                {embargue?.map((data)=>(
+                      <tr key={data.id}> 
+                      <td>{data.nomeLocal}</td>                
+                      <td>
+                        <Badge color="" className="badge-dot mr-4">
+                          <i className={`${data?.estado.toLocaleLowerCase()=="activo"?"bg-success":"bg-warning"}`} />
+                          {data?.estado}
+                        </Badge>
+                      </td>
+                    
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <button className="btn btn-primary" >editar</button>
+                          <button className="btn btn-danger" onClick={()=>deleteItem(data?.id)}>Eliminar</button>
+                        </div>
+                      </td>
+                     
+                    </tr>
+                ))}
+                
 
 
-                  <tr>
-                    <td>Gamek</td>                
-                    <td>
-                      <Badge color="" className="badge-dot mr-4">
-                        <i className="bg-warning" />
-                        Pendente
-                      </Badge>
-                    </td>
-                  
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <button className="btn btn-primary">editar</button>
-                        <button className="btn btn-danger">Eliminar</button>
-                      </div>
-                    </td>
-                   
-                  </tr>
-
-
-                  <tr>
-                    <td>Gamek</td>                
-                    <td>
-                      <Badge color="" className="badge-dot mr-4">
-                        <i className="bg-warning" />
-                        Pendente
-                      </Badge>
-                    </td>
-                  
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <button className="btn btn-primary">editar</button>
-                        <button className="btn btn-danger">Eliminar</button>
-                      </div>
-                    </td>
-                   
-                  </tr>
+                
                  
                 </tbody>
               </Table>

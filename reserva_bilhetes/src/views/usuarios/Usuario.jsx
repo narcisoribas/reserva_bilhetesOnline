@@ -1,20 +1,4 @@
-/*!
 
-=========================================================
-* Argon Dashboard React - v1.2.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 // reactstrap components
 import {
   Badge,
@@ -40,8 +24,11 @@ import {
 import { Link } from "react-router-dom";
 
 import Header from "components/Headers/Header.js";
+import { useContext } from "react";
+import { AuthContext } from "functions/context";
 
 const Usuario = () => {
+  const {userList} = useContext(AuthContext)
   return (
     <>
       <Header />
@@ -59,96 +46,35 @@ const Usuario = () => {
                   <tr>
                     <th scope="col">Nome</th>
                     <th scope="col">email</th>
-                    <th scope="col">cargo</th>
-                    <th>Duração</th>
-                    <th>Paragens</th>
+                    
                     <th>Acção</th>
                  
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Luanda-Malange</td>    
-                    <td>5000 kzs</td>            
-                    <td>
-                      <Badge color="" className="badge-dot mr-4">
-                        <i className="bg-success" />
-                        activo
-                      </Badge>
-                    </td>
 
-                    <td>4h45min</td>
-                    <td>Maria Teresa</td>                  
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <button className="btn btn-primary">editar</button>
-                        <button className="btn btn-danger">Eliminar</button>
-                      </div>
-                    </td>
-                   
-                  </tr>
-                  <tr>
-                    <td>Luanda-Malange</td>    
-                    <td>5000 kzs</td>            
-                    <td>
-                      <Badge color="" className="badge-dot mr-4">
-                        <i className="bg-success" />
-                        activo
-                      </Badge>
-                    </td>
+                  {userList?.map((user)=>(
 
-                    <td>4h45min</td>
-                    <td>Maria Teresa</td>                  
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <button className="btn btn-primary">editar</button>
-                        <button className="btn btn-danger">Eliminar</button>
-                      </div>
-                    </td>
-                   
-                  </tr>
 
-                  <tr>
-                    <td>Luanda-Malange</td>    
-                    <td>5000 kzs</td>            
-                    <td>
-                      <Badge color="" className="badge-dot mr-4">
-                        <i className="bg-success" />
-                        activo
-                      </Badge>
-                    </td>
+                            <tr key={user.id}>
+                                    <td>{user?.name}</td>    
+                                    <td>{user?.email}</td>            
+                                                
+                                    <td>
+                                      <div className="d-flex align-items-center">
+                                        <button className="btn btn-primary">editar</button>
+                                        <button className="btn btn-danger">Eliminar</button>
+                                      </div>
+                                    </td>
 
-                    <td>4h45min</td>
-                    <td>Maria Teresa</td>                  
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <button className="btn btn-primary">editar</button>
-                        <button className="btn btn-danger">Eliminar</button>
-                      </div>
-                    </td>
-                   
-                  </tr>
+                            </tr>
 
-                  <tr>
-                    <td>Luanda-Malange</td>    
-                    <td>5000 kzs</td>            
-                    <td>
-                      <Badge color="" className="badge-dot mr-4">
-                        <i className="bg-success" />
-                        activo
-                      </Badge>
-                    </td>
 
-                    <td>4h45min</td>
-                    <td>Maria Teresa</td>                  
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <button className="btn btn-primary">editar</button>
-                        <button className="btn btn-danger">Eliminar</button>
-                      </div>
-                    </td>
-                   
-                  </tr>
+
+
+                  ))}
+                 
+                
 
                  
                 </tbody>

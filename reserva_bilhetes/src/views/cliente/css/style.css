@@ -53,6 +53,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
+
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -289,6 +291,10 @@ input[type="checkbox"] {
   padding: 0;
 }
 
+.buttonColorBackground{
+  background-color:  #6f42c1!important;
+  color:#fff!important;
+}
 textarea {
   overflow: auto;
   resize: vertical;
@@ -9639,8 +9645,18 @@ h6,
 }
 
 .bg-registration {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/carousel-1.jpg), no-repeat center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/1.jpg), no-repeat center center;
   background-size: cover;
+}
+
+
+
+
+.bg{
+  background-color: rgba(55, 0, 211, 0.6)!important;
+  color: #fff!important;
+
+  
 }
 
 .team-item {

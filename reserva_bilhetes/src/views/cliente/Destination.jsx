@@ -2,11 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import destination1 from "./img/destination-1.jpg";
-import destination2 from "./img/destination-2.jpg";
-import destination3 from "./img/destination-3.jpg";
-import destination4 from "./img/destination-4.jpg";
-import destination5 from "./img/destination-5.jpg";
-import destination6 from "./img/destination-6.jpg";
+import destination2 from "./img/malange.jfif";
+import destination3 from "./img/uige.jfif";
+import destination4 from "./img/huila.jfif";
+import destination5 from "./img/benguela.jfif";
+import destination6 from "./img/huambo.jfif";
 
 function Destination() {
   const navigate = useNavigate();

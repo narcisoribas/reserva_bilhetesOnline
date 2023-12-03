@@ -77,8 +77,8 @@ function Home() {
   {/* Destination Start */}
     <Destination/>
   {/* Destination Start */}
-  {/* Service Start */}
-    <Services/>
+  {/* Service Start 
+    <Services/>*/}
   {/* Service End */}
   {/* Packages Start 
       <PackagesServices/>

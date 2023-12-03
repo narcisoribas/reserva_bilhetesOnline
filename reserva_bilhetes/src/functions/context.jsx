@@ -14,6 +14,8 @@ export function AuthContextProvider({children}){
     const [rotas,setRotas]=useState([])
     const [horario,setHorario]=useState([])
     const [userList,setUserList]=useState([])
+
+    const [embargue,setEmbargue]=useState([]);
     const navigate = useNavigate()
 
 
@@ -22,9 +24,9 @@ export function AuthContextProvider({children}){
 
     useEffect(()=>{
             async function getAllUser(){
-                await api.post("user/findAll")
+                await api.get("user/findAll")
                 .then((response)=>{
-                    console.log(response)
+                    setUserList(response.data)
                 }).catch((err)=>{
                     console.log(err)
                 })
@@ -65,7 +67,8 @@ export function AuthContextProvider({children}){
     async function userCreate(name,email,password){
             api.post("user/create",{name,email,password})
             .then((response)=>{
-                console.log(response)
+                setUserList([...userList,response.data])
+                alert("Usuario Criado com sucesso")
             }).catch((err)=>{
                 alert(err)
             })
@@ -94,17 +97,49 @@ export function AuthContextProvider({children}){
 
     /*---------- CRUD ROTAS ------------------------*/
 
+    useEffect(()=>{
+
+            async function getRoutes(){
+                await api.get("rotas/all")
+                .then((response)=>{
+                    setRotas(response.data)
+                }).catch((err)=>{
+                    console.log(err)
+                })
+            }
+
+            getRoutes();
+    },[])
+
     async function createRotas(data){
         api.post("rotas/create",data)
         .then((response)=>{
-            console.log(response.data)
+            setRotas([...rotas,response.data])
+            alert("Rota criada com sucesso")
         }).catch((err)=>{
-            alert("Erro ao cadastrar rota")
+            alert("Erro ao criar rota")
         })
     }
 
 
+
     /*-----------HORARIO */
+
+        useEffect(()=>{
+
+                async function getHorario(){
+                    await api.get("horario/findAll")
+                    .then((response)=>{
+                        setHorario(response.data)
+                    }).catch((err)=>{
+                        console.log(err)
+                    })
+                }
+
+                getHorario();
+
+
+        },[])
 
         async function createHorario(data){
             api.post("horario/create",data)
@@ -117,8 +152,63 @@ export function AuthContextProvider({children}){
 
 
 
+   /*---------- crud local de embargue ---------------*/
+
+   useEffect(()=>{
+
+        async function getEmbargue(){
+            await api.get("embarque/findAll")
+            .then((response)=>{
+                
+                setEmbargue(response.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+
+        getEmbargue();
+
+   },[])
+
+
+   async function createLocalEmbargue(data){
+
+        await api.post("/embarque/create",data)
+        .then((response)=>{
+            setEmbargue([...embargue,response.data])
+            alert("Sucesso")
+        }).catch((err)=>{
+            alert("Erro ao cadastrar local de embarque")
+        })
+   }
+
+
+   async function deleteLocalDeEmbarque(id){
+        
+            api.delete("embarque/delete",Number(id))
+            .then((response)=>{
+                alert("Sucesso")
+            }).catch((err)=>{
+                alert("erro ao apagar")
+            })
+   }
+
     return(
-        <AuthContext.Provider value={{login,user,userCreate,userList,createRotas,rotas,createHorario,horario,logout}}>
+        <AuthContext.Provider value={{
+                
+                            login,
+                            user,
+                            userCreate,
+                            userList,
+                            createRotas,
+                            rotas,
+                            createHorario,
+                            horario,
+                            logout,
+                            embargue,
+                            createLocalEmbargue,
+                            deleteLocalDeEmbarque
+                            }}>
             {children}
         </AuthContext.Provider>
     )

@@ -1,9 +1,9 @@
 import React from 'react'
 
 
-import about from "./img/about.jpg"
-import about1 from "./img/about-1.jpg"
-import about2 from "./img/about-2.jpg"
+import about from "./img/1.jpg"
+import about1 from "./img/huila.jfif"
+import about2 from "./img/benguela.jfif"
 
 function About() {
   return (
