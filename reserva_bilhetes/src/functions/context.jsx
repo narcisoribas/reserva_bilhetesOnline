@@ -15,6 +15,8 @@ export function AuthContextProvider({children}){
     const [horario,setHorario]=useState([])
     const [userList,setUserList]=useState([])
 
+    const [viagemReservada,setViagemRervada] = useState()
+
     const [embargue,setEmbargue]=useState([]);
     const navigate = useNavigate()
 
@@ -45,7 +47,6 @@ export function AuthContextProvider({children}){
             setUser(response.data)
             navigate("/admin")
 
-            console.log(response.data)
 
             localStorage.setItem("user", JSON.stringify(user));
             setUser(user);
@@ -193,9 +194,25 @@ export function AuthContextProvider({children}){
             })
    }
 
+   /**   viagem reservada **/
+
+
+   useEffect(()=>{
+    if(localStorage.getItem("viagemReservada")){
+        setViagemRervada(localStorage.getItem("viagemReservada"))
+    }
+   },[])
+   async function reservarViagem(data){
+            setViagemRervada(data)
+            localStorage.setItem("viagemReservada", JSON.stringify(viagemReservada));
+            alert("sucesso")
+   }
+
     return(
         <AuthContext.Provider value={{
-                
+                         reservarViagem,
+                            viagemReservada,
+                            setViagemRervada,
                             login,
                             user,
                             userCreate,

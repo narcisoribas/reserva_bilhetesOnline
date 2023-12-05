@@ -299,6 +299,10 @@ input[type="checkbox"] {
   padding: 0;
 }
 
+.myColorText{
+    color: #6f42c1!important;
+}
+
 .buttonColorBackground{
   background-color:  #6f42c1!important;
   color:#fff!important;

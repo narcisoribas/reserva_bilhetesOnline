@@ -39,7 +39,7 @@ function Home() {
       <div className="row">
         <div className="col-md-4">
           <div className="d-flex mb-4 mb-lg-0">
-            <div className="d-flex flex-shrink-0 align-items-center justify-content-center bg-primary mr-3" style={{height: 100, width: 100}}>
+            <div className="d-flex flex-shrink-0 align-items-center justify-content-center buttonColorBackground mr-3" style={{height: 100, width: 100}}>
               <i className="fa fa-2x fa-money-check-alt text-white" />
             </div>
             <div className="d-flex flex-column">
@@ -50,7 +50,7 @@ function Home() {
         </div>
         <div className="col-md-4">
           <div className="d-flex mb-4 mb-lg-0">
-            <div className="d-flex flex-shrink-0 align-items-center justify-content-center bg-primary mr-3" style={{height: 100, width: 100}}>
+            <div className="d-flex flex-shrink-0 align-items-center justify-content-center buttonColorBackground mr-3" style={{height: 100, width: 100}}>
               <i className="fa fa-2x fa-award text-white" />
             </div>
             <div className="d-flex flex-column">
@@ -61,7 +61,7 @@ function Home() {
         </div>
         <div className="col-md-4">
           <div className="d-flex mb-4 mb-lg-0">
-            <div className="d-flex flex-shrink-0 align-items-center justify-content-center bg-primary mr-3" style={{height: 100, width: 100}}>
+            <div className="d-flex flex-shrink-0 align-items-center justify-content-center buttonColorBackground mr-3" style={{height: 100, width: 100}}>
               <i className="fa fa-2x fa-globe text-white" />
             </div>
             <div className="d-flex flex-column">
@@ -94,14 +94,14 @@ function Home() {
             ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est
             dolor</p>
           <ul className="list-inline text-white m-0">
-            <li className="py-2"><i className="fa fa-check text-primary mr-3" />Labore eos amet dolor amet diam</li>
-            <li className="py-2"><i className="fa fa-check text-primary mr-3" />Etsea et sit dolor amet ipsum</li>
-            <li className="py-2"><i className="fa fa-check text-primary mr-3" />Diam dolor diam elitripsum vero.</li>
+            <li className="py-2"><i className="fa fa-check myColorText mr-3" />Labore eos amet dolor amet diam</li>
+            <li className="py-2"><i className="fa fa-check myColorText mr-3" />Etsea et sit dolor amet ipsum</li>
+            <li className="py-2"><i className="fa fa-check myColorText mr-3" />Diam dolor diam elitripsum vero.</li>
           </ul>
         </div>
         <div className="col-lg-5">
           <div className="card border-0">
-            <div className="card-header bg-primary text-center p-4">
+            <div className="card-header buttonColorBackground text-center p-4">
               <h1 className="text-white m-0">Crie uma conta</h1>
             </div>
             <div className="card-body rounded-bottom bg-white p-5">
@@ -121,7 +121,7 @@ function Home() {
                   </select>
                 </div>
                 <div>
-                  <button className="btn btn-primary btn-block py-3" type="submit">Registrar-se</button>
+                  <button className="btn buttonColorBackground btn-block py-3" type="submit">Registrar-se</button>
                 </div>
               </form>
             </div>

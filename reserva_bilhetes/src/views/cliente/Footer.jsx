@@ -1,5 +1,7 @@
 import React from 'react'
 
+import logo from "./img/logo_white.png"
+
 function Footer() {
   return (
     <div>
@@ -7,15 +9,15 @@ function Footer() {
     <div className="row pt-5">
       <div className="col-lg-3 col-md-6 mb-5">
         <a href className="navbar-brand">
-          <h1 className="text-primary"><span className="text-white">H</span>EXPRESSO</h1>
+          <h1 className="text-primary"><img src={logo} /></h1>
         </a>
         <p>Sed ipsum clita tempor ipsum ipsum amet sit ipsum lorem amet labore rebum lorem ipsum dolor. No sed vero lorem dolor dolor</p>
-        <h6 className="text-white text-uppercase mt-4 mb-3" style={{letterSpacing: 5}}>Follow Us</h6>
+        <h6 className="text-white text-uppercase mt-4 mb-3" style={{letterSpacing: 5}}>Siga-nos</h6>
         <div className="d-flex justify-content-start">
-          <a className="btn btn-outline-primary btn-square mr-2" href="#"><i className="fab fa-twitter" /></a>
-          <a className="btn btn-outline-primary btn-square mr-2" href="#"><i className="fab fa-facebook-f" /></a>
-          <a className="btn btn-outline-primary btn-square mr-2" href="#"><i className="fab fa-linkedin-in" /></a>
-          <a className="btn btn-outline-primary btn-square" href="#"><i className="fab fa-instagram" /></a>
+          <a className="btn btn-square mr-2" href="#" style={{border:"1px solid #6f42c1"}}><i className="fab fa-twitter" /></a>
+          <a className="btn  btn-square mr-2"  style={{border:"1px solid #6f42c1"}} href="#"><i className="fab fa-facebook-f" /></a>
+          <a className="btn  btn-square mr-2"  style={{border:"1px solid #6f42c1"}} href="#"><i className="fab fa-linkedin-in" /></a>
+          <a className="btn  btn-square"  style={{border:"1px solid #6f42c1"}} href="#"><i className="fab fa-instagram" /></a>
         </div>
       </div>
       <div className="col-lg-3 col-md-6 mb-5">
@@ -44,14 +46,14 @@ function Footer() {
         </p>
       </div>
       <div className="col-lg-6 text-center text-md-right">
-        <p className="m-0 text-white-50">Criado por <a href="https://freewebsitecode.com">Narciso Ribas</a>
+        <p className="m-0 text-white-50">Criado por <a href="https://freewebsitecode.com">Faustino Melo</a>
         </p>
       </div>
     </div>
   </div>
   {/* Footer End */}
   {/* Back to Top */}
-  <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top"><i className="fa fa-angle-double-up" /></a>
+  <a href="#" className="btn btn-lg buttonColorBackground btn-lg-square back-to-top"><i className="fa fa-angle-double-up" /></a>
   {/* JavaScript Libraries */}
   {/* Contact Javascript File */}
   {/* Template Javascript */}

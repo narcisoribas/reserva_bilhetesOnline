@@ -1,10 +1,18 @@
-import React from 'react'
+import { AuthContext } from 'functions/context';
+import React, { useContext, useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
 function BokingStart() {
     const navigate = useNavigate();
+    const {rotas}=useContext(AuthContext)
 
+    const[origem,setOrigem]=useState()
+    const [destino,setDestino]=useState()
+
+    function handleReserva(){
+      navigate(`/reserva/origem/${origem}/destino/${destino}`)
+    }
     
   return (
     <div className="container-fluid booking mt-5 pb-5">
@@ -13,44 +21,35 @@ function BokingStart() {
         <div className="row align-items-center" style={{minHeight: 60}}>
           <div className="col-md-10">
             <div className="row">
-              <div className="col-md-3">
+              <div className="col-md-6">
                 <div className="mb-3 mb-md-0">
-                  <select className="custom-select px-4" style={{height: 47}}>
-                    <option selected>Destino</option>
-                    <option value={1}>Destination 1</option>
-                    <option value={2}>Destination 1</option>
-                    <option value={3}>Destination 1</option>
+                  <select className="custom-select px-4" style={{height: 47}} value={origem} onChange={e=>setOrigem(e.target.value)}>
+                    <option selected>Origem</option>
+
+                    {rotas?.map((rota)=>(
+                         <option value={rota.origem}>{rota.origem}</option>
+                    ))}
+                 
                   </select>
                 </div>
               </div>
-              <div className="col-md-3">
+
+              <div className="col-md-6">
                 <div className="mb-3 mb-md-0">
-                  <div className="date" id="date1" data-target-input="nearest">
-                    <input type="date" className="form-control p-4 datetimepicker-input" placeholder="Depart Date" data-target="#date1" data-toggle="datetimepicker" />
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-3">
-                <div className="mb-3 mb-md-0">
-                  <div className="date" id="date2" data-target-input="nearest">
-                    <input type="date" className="form-control p-4 datetimepicker-input" placeholder="Return Date" data-target="#date2" data-toggle="datetimepicker" />
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-3">
-                <div className="mb-3 mb-md-0">
-                  <select className="custom-select px-4" style={{height: 47}}>
-                    <option selected>Duração</option>
-                    <option value={1}>Duration 1</option>
-                    <option value={2}>Duration 1</option>
-                    <option value={3}>Duration 1</option>
+                  <select className="custom-select px-4" style={{height: 47}} value={destino} onChange={e=>setDestino(e.target.value)}>
+                    <option selected>Destino</option>
+
+                    {rotas?.map((rota)=>(
+                         <option value={rota.rota}>{rota.destino}</option>
+                    ))}
+                 
                   </select>
                 </div>
               </div>
             </div>
           </div>
           <div className="col-md-2">
-            <button onClick={()=>navigate("/reserva")} className="btn btn-primary btn-block" type="button" role='button' style={{height: 47, marginTop: '-2px'}}>Submeter</button>
+            <button onClick={handleReserva} className="btn buttonColorBackground  btn-block" type="button" role='button' style={{height: 47, marginTop: '-2px'}}>Submeter</button>
           </div>
         </div>
       </div>
