@@ -1,22 +1,8 @@
-/*!
 
-=========================================================
-* Argon Dashboard React - v1.2.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 
 // reactstrap components
+import { AuthContext } from "functions/context";
+import { useContext, useState } from "react";
 import {
   Button,
   Card,
@@ -33,38 +19,32 @@ import {
 } from "reactstrap";
 
 const Register = () => {
+
+    const {userCreate}=useContext(AuthContext)
+    const [name,setNome]=useState()
+    const [email,setEmail]=useState()
+    const [password,setPassword]=useState()
+    const [telefone,setTelefone]=useState()
+
+
+    async function handleCreateCliente(){
+          await  userCreate(name,email,password)
+    }
+
+
+
+
   return (
     <>
       <Col lg="6" md="8">
         <Card className="bg-secondary shadow border-0">
           <CardHeader className="bg-transparent pb-5">
-            <div className="text-muted text-center mt-2 mb-4">
-              <small>Entrar com</small>
-            </div>
-            <div className="text-center">
-             
-              <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="btn-inner--icon">
-                  <img
-                    alt="..."
-                    src={
-                      require("../../assets/img/icons/common/google.svg")
-                        .default
-                    }
-                  />
-                </span>
-                <span className="btn-inner--text">Google</span>
-              </Button>
-            </div>
+        
+            
           </CardHeader>
           <CardBody className="px-lg-5 py-lg-5">
             <div className="text-center text-muted mb-4">
-              <small>Ou insira as suas credenciais</small>
+              <small>Insira as suas credenciais</small>
             </div>
             <Form role="form">
               <FormGroup>
@@ -74,7 +54,7 @@ const Register = () => {
                       <i className="ni ni-hat-3" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input placeholder="Nome" type="text" />
+                  <Input value={name} onChange={e=>setNome(e.target.value)} placeholder="Nome" type="text" />
                 </InputGroup>
               </FormGroup>
               <FormGroup>
@@ -85,12 +65,14 @@ const Register = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
+                  value={email} onChange={e=>setEmail(e.target.value)}
                     placeholder="Email"
                     type="email"
                     autoComplete="new-email"
                   />
                 </InputGroup>
               </FormGroup>
+
               <FormGroup>
                 <InputGroup className="input-group-alternative">
                   <InputGroupAddon addonType="prepend">
@@ -99,6 +81,7 @@ const Register = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
+                    value={password} onChange={e=>setPassword(e.target.value)}
                     placeholder="Palavra passe"
                     type="password"
                     autoComplete="new-password"
@@ -134,7 +117,7 @@ const Register = () => {
                 </Col>
               </Row>
               <div className="text-center">
-                <Button className="mt-4" color="primary" type="button">
+                <Button className="mt-4" color="primary" type="button" onClick={handleCreateCliente}>
                   Criar conta
                 </Button>
               </div>

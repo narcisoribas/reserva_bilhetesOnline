@@ -1,32 +1,12 @@
 import { AuthContext } from 'functions/context';
+import { operationHasBenSucceded } from 'functions/sweet';
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Card, CardBody } from 'reactstrap'
 import { api } from 'services/server';
 
 
-/**
- * 
- * @returns 
- * {
-    "id": 1,
-    "origem": "Luanda",
-    "destino": "Malange",
-    "horario_id": 1,
-    "preco": 2345,
-    "extensao": "14km",
-    "duracao": "5h",
-    "n_paragem": 22,
-    "total_ocupantes": 333,
-    "desconto": 10,
-    "user_id": 2,
-    "estado": "activo",
-    "created_at": "2023-11-09 13:36:37",
-    "updated_at": "2023-11-09 13:36:37",
-    "local_embarque_id": 1,
-    "hora": "14:30"
-}
- */
+
 
 
 
@@ -37,6 +17,8 @@ function ReservaOptions() {
     const navigate = useNavigate();
     const { origem, destino } = useParams()
 
+    
+
     const [disabledButton,setDisabledButton]=useState(false)
 
     const [rotas, setRotas] = useState()
@@ -44,7 +26,10 @@ function ReservaOptions() {
     function handleReservarViagem(){
         reservarViagem(rotas)
         setDisabledButton(true)
+       
     }
+
+
     useEffect(() => {
         async function routes() {
             api.get(`rotas/show/${origem}/${destino}`)
@@ -91,7 +76,7 @@ function ReservaOptions() {
             <span className='mt-5'>  {new Intl.NumberFormat("pt-BR", {
         style: "currency",
         currency: "kzs",
-      }).format(Number(rotas?.preco))}</span>
+      }).format(Number(rotas?.preco?rotas?.preco:0))}</span>
 
         </div>
 
@@ -114,7 +99,7 @@ function ReservaOptions() {
 
             <Card>
                 <div className='d-flex py-3 px-3 font-weight-bold ml-5'>
-                    <button onClick={() => navigate("/resumoViagem")} className="btn buttonColorBackground col-md-5 py-3" type="button" role='button' >Finalizar</button>
+                    <button onClick={() => navigate("/resumoViagem")} className="btn buttonColorBackground col-md-5 py-3" type="button" role='button' >Proximo</button>
                 </div>
             </Card>
         </div>

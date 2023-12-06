@@ -1,7 +1,10 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import logo from "./img/logo_white.png"
+import { AuthContext } from 'functions/context'
 
 function NavBar() {
+
+  const {user,logout,isAuthenticate}=useContext(AuthContext)
   return (
     <Fragment>
       {/* Topbar Start 
@@ -59,7 +62,11 @@ function NavBar() {
             <a href="/auth/login" className="nav-item nav-link">Login</a>
             
             
-            <a href="#contact" className="nav-item nav-link">Contact</a>
+            <a href="#contact" className="nav-item nav-link">{user?.email?user?.email:"Usuario"}</a>
+
+            {isAuthenticate? <a onClick={()=>logout()} className="nav-item nav-link">Sair</a>:""}
+
+           
           </div>
         </div>
       </nav>

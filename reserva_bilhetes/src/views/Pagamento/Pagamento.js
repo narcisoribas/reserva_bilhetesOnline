@@ -1,20 +1,4 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
+import { useContext } from "react";
 // reactstrap components
 import {
   Badge,
@@ -37,8 +21,28 @@ import {
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
+import { AuthContext } from "functions/context";
 
+/*
+
+{
+  "id": 2,
+  "": 1,
+  "dataViagem": "2020-10-23",
+  "horaViagem": "10:00",
+  "n_assento": 23,
+  "n_bilhete": "0",
+  "pagamento_id": 2,
+  "": 2,
+  "user_id": 1,
+  "estado": "disponivel",
+  "observacao": "nenhuma",
+  "created_at": "2023-11-09T22:49:50.000000Z",
+  "updated_at": "2023-11-09T22:49:50.000000Z"
+}
+*/
 const Pagamentos = () => {
+  const {viagem}=useContext(AuthContext)
   return (
     <>
       <Header />
@@ -55,31 +59,34 @@ const Pagamentos = () => {
                 <thead className="thead-light">
                   <tr>
                     <th scope="col">codigo</th>
-                    <th scope="col">quantia</th>
+                    <th>Cliente</th>
+                    <th>Rota</th>               
                     <th scope="col">Data</th>
+                    <th scope="col">Hora</th>
                     <th scope="col">Ação</th>
                  
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>COD001</td>    
-                    <td>500.00 AOA</td>              
-                    <td>
-                      <Badge color="" className="badge-dot mr-4">
-                        <i className="bg-warning" />
-                        Pendente
-                      </Badge>
-                    </td>
-                  
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <button className="btn btn-primary">editar</button>
-                        <button className="btn btn-danger">Eliminar</button>
-                      </div>
-                    </td>
-                   
-                  </tr>
+                 {viagem?.map((data)=>(
+                      <tr>
+                          <td>{data.id}</td>    
+                          <td>{data.passageiro_id}</td>      
+                          <td>{data.rota_id}</td>   
+                          <td>{data.dataViagem}</td> 
+                          <td>{data.horaViagem}</td> 
+                                   
+                         
+                        
+                          <td>
+                            <div className="d-flex align-items-center">
+                              <button className="btn btn-primary">editar</button>
+                              <button className="btn btn-danger">Eliminar</button>
+                            </div>
+                          </td>
+                      
+                      </tr>
+                 ))}
 
                  
                  

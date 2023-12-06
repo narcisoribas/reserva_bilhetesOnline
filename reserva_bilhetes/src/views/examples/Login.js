@@ -25,7 +25,6 @@ const Login = () => {
 
 
   const handleSubmit = ()=>{
-   // alert("ola")
     login(email,password);
   }
 

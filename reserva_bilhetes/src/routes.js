@@ -63,7 +63,7 @@ var routes = [
   },
   {
     path:"/users",
-    name:"Usuarios",
+    name:"Clientes",
     icon: "ni ni-single-02 text-yellow",
     component:<Usuario/>,
     layout:"/admin"

@@ -1,22 +1,37 @@
 
 
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Card, CardBody, CardHeader, Form, Row } from 'reactstrap'
 
 import mcEXP from "./mcexpress.png"
 import unitel from "./unitelmane.jpg"
 import pagamentoPorReferencia from "./pagamentoReferecia.jpg"
+import { AuthContext } from 'functions/context'
+import { operationHasFailed } from 'functions/sweet'
 
 function MetodoPagamento() {
+
+  const { createViagem}=useContext(AuthContext)
   const[metodoDePagamento,setMetoDePagamento]=useState();
-  const [telefone,setTelefone]=useState()
+  const [referencia,setreferencia]=useState()
+
+
 
   const navigate = useNavigate()
 
   const handleRadioChange = (event) => {
     setMetoDePagamento(event.target.value);
   };
+
+  function handleCreateViagem(){
+    try {
+      createViagem({metodoDePagamento,referencia})
+      navigate("/auth/recibo")
+    } catch (error) {
+      operationHasFailed("Erro ao efectuar pagamento")
+    }
+  }
   return (
     <div className='container'>
         <Card>
@@ -45,10 +60,10 @@ function MetodoPagamento() {
                   <Row>
                       <label className='col-md-12 py-2'>
                           Comprovativo
-                        <input type='file' value={telefone} onChange={e=>setTelefone(e.target.value)} className='form-control mt-3  px-3 py-4' name="sobreNomePassageiro" placeholder='comprovativo...'/>
+                        <input type='file' value={referencia} onChange={e=>setreferencia(e.target.value)} className='form-control mt-3  px-3 py-4' name="sobreNomePassageiro" placeholder='comprovativo...'/>
                       </label>
 
-                      <button onClick={()=>navigate("/recibo")} className='btn btn-primary col-md-4  ml-3' type='button' role='button'>Pagar</button>
+                      <button onClick={handleCreateViagem} className='btn btn-primary col-md-4  ml-3' type='button' role='button'>Pagar</button>
                   </Row>
             </Form>
           </CardBody>

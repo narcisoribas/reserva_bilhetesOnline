@@ -3,26 +3,35 @@ import { api } from "./../services/server";
 import { useNavigate } from "react-router-dom";
 
 import { parseCookies,setCookie, destroyCookie } from "nookies";
+import { operationHasBenSucceded, operationHasFailed } from "./sweet";
 
 
 
 export const AuthContext = createContext({});
 
 export function AuthContextProvider({children}){
-    const [user,setUser]=useState();
+    const [user,setUser]=useState(JSON.parse(localStorage.getItem("user") || "null"));
 
     const [rotas,setRotas]=useState([])
     const [horario,setHorario]=useState([])
     const [userList,setUserList]=useState([])
+    const [viagem,setViagem]=useState([])
 
     const [viagemReservada,setViagemRervada] = useState()
 
     const [embargue,setEmbargue]=useState([]);
+    const [isComingFromReserve,setIsComingFromReserve]=useState(JSON.parse(localStorage.getItem("isComingFromReserve") || "false"))
+    const [anteriorLocation,setAnteriorLocation]=useState(JSON.parse(localStorage.getItem("anteriorLocation") || "null"))
     const navigate = useNavigate()
+
+    const isAuthenticate =!!user;
 
 
 
     /*---------------------CRDU USUARIO----------------------------*/
+
+
+
 
     useEffect(()=>{
             async function getAllUser(){
@@ -45,7 +54,14 @@ export function AuthContextProvider({children}){
         .then((response)=>{
             const {access_token,user}=response.data
             setUser(response.data)
-            navigate("/admin")
+
+            if(isComingFromReserve){
+                navigate(anteriorLocation)
+                setAnteriorLocation("")
+            }else{
+                navigate("/admin")
+            }
+        
 
 
             localStorage.setItem("user", JSON.stringify(user));
@@ -62,16 +78,33 @@ export function AuthContextProvider({children}){
             api.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
 
 
-        }).catch((err)=>console.log(err))
+        }).catch((err)=>{
+            operationHasFailed("ERRO ao fazer login, email ou senha invalidos")
+        })
     }
 
     async function userCreate(name,email,password){
             api.post("user/create",{name,email,password})
             .then((response)=>{
-                setUserList([...userList,response.data])
-                alert("Usuario Criado com sucesso")
+                
+                if(isComingFromReserve){
+                    setUserList([...userList,response.data])
+                    operationHasBenSucceded("Sucecsso")
+                    navigate(anteriorLocation)
+                }else{
+                    setUserList([...userList,response.data])
+
+                    if(response.status===200){
+                        operationHasBenSucceded("Usuario Criado com sucesso")
+                    }else if(response.status===500){
+                        operationHasFailed("Erro ao comunicar-se com o servidor")
+                    }else{
+                        operationHasFailed("Erro ao cadastar-se")
+                    }
+                  
+                }
             }).catch((err)=>{
-                alert(err)
+                operationHasFailed("Erro ao cadastrar")
             })
     }
 
@@ -86,12 +119,13 @@ export function AuthContextProvider({children}){
             setUser(null);
             destroyCookie(null, "token.Onschool");
              localStorage.clear();
+             operationHasBenSucceded("Sessao terminada")
              navigate("/");
 
             
 
         }).catch((err)=>{
-            alert("Erro ao sair")
+            operationHasFailed("Erro ao terminar sessao")
         })
     }
 
@@ -116,9 +150,9 @@ export function AuthContextProvider({children}){
         api.post("rotas/create",data)
         .then((response)=>{
             setRotas([...rotas,response.data])
-            alert("Rota criada com sucesso")
+            operationHasBenSucceded("Rota criada com sucesso")
         }).catch((err)=>{
-            alert("Erro ao criar rota")
+            operationHasFailed("Erro ao criar rota")
         })
     }
 
@@ -177,9 +211,9 @@ export function AuthContextProvider({children}){
         await api.post("/embarque/create",data)
         .then((response)=>{
             setEmbargue([...embargue,response.data])
-            alert("Sucesso")
+            operationHasBenSucceded("Sucesso")
         }).catch((err)=>{
-            alert("Erro ao cadastrar local de embarque")
+            operationHasFailed("Erro ao cadastrar local de embarque")
         })
    }
 
@@ -188,9 +222,9 @@ export function AuthContextProvider({children}){
         
             api.delete("embarque/delete",Number(id))
             .then((response)=>{
-                alert("Sucesso")
+                operationHasBenSucceded("Sucesso")
             }).catch((err)=>{
-                alert("erro ao apagar")
+                operationHasFailed("erro ao apagar")
             })
    }
 
@@ -202,15 +236,71 @@ export function AuthContextProvider({children}){
         setViagemRervada(localStorage.getItem("viagemReservada"))
     }
    },[])
+
+
    async function reservarViagem(data){
-            setViagemRervada(data)
-            localStorage.setItem("viagemReservada", JSON.stringify(viagemReservada));
-            alert("sucesso")
+
+            if(isAuthenticate){
+                setViagemRervada(data)
+                localStorage.setItem("viagemReservada", JSON.stringify(viagemReservada));
+                operationHasBenSucceded("Reservado!")
+            }else{
+                setAnteriorLocation(window.location.pathname)
+
+                setIsComingFromReserve(true)
+                localStorage.setItem("isComingFromReserve", JSON.stringify(isComingFromReserve));
+                localStorage.setItem("anteriorLocation", JSON.stringify(anteriorLocation));
+                navigate("/auth/login")
+            }
+          
+
+            
+   }
+
+
+   /**     viagem crud*/
+
+
+   useEffect(()=>{
+    api.get("viagem/findAll")
+    .then((response=>{
+        setViagem(response.data)
+        console.log(response.data)
+    })).catch((err)=>{
+        console.log(err)
+    })
+   },[])
+
+   async function createViagem(data){
+    const {referencia} =data
+    const {rota_id:id}=viagemReservada
+    const n_assento=null
+    n_bilhete= null
+    const desconto =0;
+    const Total =0;
+    const observacao ="nenhuma"
+   const estado="disponivel"
+
+    await api.post("viagem/create",{desconto,observacao,estado,referencia,n_assento,n_bilhete,user_id:user.id,passageiro_id:user.id})
+
+
+    .then((response)=>{
+        console.log(response.data)
+        setViagem([...viagem,response.data])
+        operationHasBenSucceded("Sucesso!")
+    }).catch((err)=>{
+
+    })
    }
 
     return(
         <AuthContext.Provider value={{
-                         reservarViagem,
+                            viagem,setViagem,
+                            createViagem,
+                            isAuthenticate,
+                            isComingFromReserve,
+                            setIsComingFromReserve,
+                            reservarViagem,
                             viagemReservada,
                             setViagemRervada,
                             login,

@@ -33,7 +33,7 @@ function QRCodeView() {
       <NavBar/>
     <div className='container ' style={{width: '256px',height: '256px',flexShrink:0,marginTop:"10rem"}}>
     <QRCode
-      value={viagemReservada!==null?viagemReservada:""}
+      value={viagemReservada}
     />
 <br/>
 <br/>
